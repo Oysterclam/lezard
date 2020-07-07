@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<style>
+#myContainer {
+  width: 400px;
+  height: 400px;
+  position: relative;
+  background: yellow;
+}
+#myAnimation {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  background-color: red;
+}
+#dawnaSquare{
+  position: absolute;
+  background-color: green;
+}
+#lizardBox {
+  width: 100vw;
+  height: 100vh;
+  position:absolute;
+  float: bottom;
+
+}
+#lizard{
+  position:relative;
+  float: right;
+  float: bottom;
+}
+#lizardeyes{
+    position:absolute;
+    top: 170px;
+    left: 70px;
+}
+#lizardmouth{
+    position:absolute;
+    top: 170px;
+    left: 70px;
+}
+#lizardhead{
+    position:absolute;
+    top: 170px;
+    left: 70px;
+}
+#stump{
+    position:absolute;
+    top: 0px;
+    left: 250px;
+}
+#bodyshadow{
+    position:absolute;
+    top: 10px;
+    left: 440px;
+}
+#headshadow{
+    position:absolute;
+    top: 0px;
+    left: 0px;
+}
+</style>
+
+<body onmousemove ="moveFace(event)">
+
+
+<div id = "lizardBox";>
+    <div id="stump">
+        <img src="stump.png">
+    </div>
+    <div id="bodyshadow">
+        <img src="shadow_bodyT.png">
+    </div>
+        <div id= "lizard" >
+            <div id="headshadow">
+                <img src="shadow_headT.png">
+            </div>
+                <img src="lizard_no_headT.png" >
+            <div id="lizardhead">
+                <img src="lizardheadT.png">
+            </div>
+            <div id="lizardeyes">
+                <img src="lizardeyesT.png">
+            </div>
+            <div id="lizardmouth">
+                <img src="lizardmouthT.png">
+            </div>
+    <!--     <img id="dawnaSquare" src="lizard.png" onclick="pulse();" width = "800px"  height = "500px" >
+     -->
+    </div>
+</div>
+
+<p>
+<button onclick="ballz()">print position to console</button> 
+</p>
+<script>
+function dawna(){
+  console.log("dawnaball\n");
+}
+
+function ballz(){
+  var face = document.getElementById("lizardeyes");
+  var facetangle = face.getBoundingClientRect();
+  console.log("eyes's left pos.:", facetangle.left);
+  console.log("eyes's right pos.:", facetangle.right);
+  face.style.left = 77 +'px';
+  setTimeout(function shrink(){ 
+  face.style.left = 70 +'px';
+    }, 400);
+}
+
+function pulse(){
+  var elem = document.getElementById("dawnaSquare");  
+  document.getElementById("dawnaSquare").width+=20;
+  document.getElementById("dawnaSquare").height+=20; 
+  setTimeout(function shrink(){ 
+        document.getElementById("dawnaSquare").width -=20
+        document.getElementById("dawnaSquare").height -=20
+        }, 100);
+}
+
+function myMove() {
+  var elem = document.getElementById("myAnimation");   
+  var pos = 0;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (pos == 350) {
+      clearInterval(id);
+    } else {
+      pos++; 
+      elem.style.top = pos + 'px'; 
+      elem.style.left = pos + 'px'; 
+    }
+  }
+}
+
+function logpos(e){
+  console.log("mouse location:", e.clientX, e.clientY)
+}
+function moveHead(e){
+  logpos(e);
+  var head = document.getElementById("lizardhead");
+  var headshadow= document.getElementById("headshadow");
+  var facetangle = head.getBoundingClientRect();
+  var hx = facetangle.left;
+  var hy = facetangle.top;
+  var mx = e.clientX;
+  var my = e.clientY;
+  var dx = mx - hx;
+  var dy = my - hy;
+  var newx = 70 + dx/100;
+  var newy = 170 + dy/100;
+  head.style.left = newx +'px';
+  head.style.top = newy +'px';
+
+  var newx = dx/100;
+  var newy = dy/100;
+  headshadow.style.left = newx +'px';
+  headshadow.style.top = newy +'px';
+}
+function moveMouth(e){
+  logpos(e);
+  var mouth = document.getElementById("lizardmouth");
+  var facetangle = mouth.getBoundingClientRect();
+  var x = facetangle.left;
+  var y = facetangle.top;
+  var mx = e.clientX;
+  var my = e.clientY;
+  var dx = mx - x;
+  var dy = my - y;
+  var newx = 70 + dx/70;
+  var newy = 170 + dy/70;
+  mouth.style.left = newx +'px';
+  mouth.style.top = newy +'px';
+}
+function moveEye(e){
+  logpos(e);
+  var eyes = document.getElementById("lizardeyes");
+  var facetangle = eyes.getBoundingClientRect();
+  var x = facetangle.left;
+  var y = facetangle.top;
+  var mx = e.clientX;
+  var my = e.clientY;
+  var dx = mx - x;
+  var dy = my - y;
+  var newx = 70 + dx/45;
+  var newy = 170 + dy/45;
+  eyes.style.left = newx +'px';
+  eyes.style.top = newy +'px';
+}
+function moveFace(e){
+  moveHead(e);
+  moveEye(e);
+  moveMouth(e);
+}
+</script>
+
+</body>
+</html>
