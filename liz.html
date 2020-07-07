@@ -22,12 +22,15 @@
   height: 100vh;
   position:absolute;
   float: bottom;
+    right:0;
+
 
 }
 #lizard{
-  position:relative;
+  position:absolute;
   float: right;
   float: bottom;
+  right:0;
 }
 #lizardeyes{
     position:absolute;
@@ -46,18 +49,24 @@
 }
 #stump{
     position:absolute;
-    top: 0px;
-    left: 250px;
+    left: -150px;
 }
 #bodyshadow{
     position:absolute;
     top: 10px;
-    left: 440px;
+
 }
 #headshadow{
     position:absolute;
     top: 0px;
     left: 0px;
+}
+#scenery{
+    position:absolute;
+    float: right;
+    float: bottom;
+    top: 0px;
+    right: 800px;
 }
 </style>
 
@@ -65,12 +74,14 @@
 
 
 <div id = "lizardBox";>
-    <div id="stump">
-        <img src="stump.png">
-    </div>
-    <div id="bodyshadow">
-        <img src="shadow_bodyT.png">
-    </div>
+        <div id = "scenery";>
+            <div id="stump">
+                <img src="stump.png">
+            </div>
+            <div id="bodyshadow">
+                <img src="shadow_bodyT.png">
+            </div>
+        </div>
         <div id= "lizard" >
             <div id="headshadow">
                 <img src="shadow_headT.png">
